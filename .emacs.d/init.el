@@ -138,7 +138,8 @@
   (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
-  :after lsp)
+  :after lsp
+  :config (lsp-treemacs-sync-mode 1))
 
 (use-package dap-mode
   ;; Uncomment the config below if you want all UI panes to be hidden by default!
@@ -152,8 +153,10 @@
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
+  :bind
+  ("M-RET" . lsp-execute-code-action)
+  (:map company-active-map
+        ("<tab>" . company-complete-selection))
         (:map lsp-mode-map
          ("<tab>" . company-indent-or-complete-common))
   :custom
@@ -410,10 +413,6 @@
   :hook
   (kotlin-mode . lsp))
 
-(use-package all-the-icons-completion
-  :config
-  (all-the-icons-completion-mode))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -422,7 +421,7 @@
  '(dap-print-io t)
  '(lsp-log-io nil)
  '(package-selected-packages
-   '(kotlin-mode typescript-mode yascroll sublimity super-save marginalia all-the-icons-completion nerd-icons-completion yaml-mode web-mode utop flycheck-ocaml merlin-eldoc merlin dune tuareg haskell-mode rust-mode flycheck-joker cider inf-clojure inf-ruby clojure-mode move-text exec-path-from-shell paredit expand-region autopair mode-icons emojify all-the-icons-dired dired-single rainbow-delimiters magit lsp-java yasnippet flycheck projectile company-box company dap-mode lsp-treemacs lsp-ui lsp-mode which-key nerd-fonts doom-themes nerd-icons doom-modeline vertico all-the-icons no-littering auto-package-update)))
+   '(kotlin-mode typescript-mode yascroll sublimity super-save marginalia nerd-icons-completion yaml-mode web-mode utop flycheck-ocaml merlin-eldoc merlin dune tuareg haskell-mode rust-mode flycheck-joker cider inf-clojure inf-ruby clojure-mode move-text exec-path-from-shell paredit expand-region autopair mode-icons emojify all-the-icons-dired dired-single rainbow-delimiters magit lsp-java yasnippet flycheck projectile company-box company dap-mode lsp-treemacs lsp-ui lsp-mode which-key nerd-fonts doom-themes nerd-icons doom-modeline vertico all-the-icons no-littering auto-package-update)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
